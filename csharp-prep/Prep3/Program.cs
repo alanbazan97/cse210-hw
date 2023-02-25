@@ -5,11 +5,15 @@ class Program
     static void Main(string[] args)
     {
         ///Prompt the user for a magic number
-        Console.Write("What is the magic number? ");
-        string magicNumber = Console.ReadLine();
-        int number = int.Parse(magicNumber); 
+        //Console.Write("What is the magic number? ");
+        //string magicNumber = Console.ReadLine();
+        //int number = int.Parse(magicNumber); 
         ///While Loop
-        while (number != guess)
+        Random randomGenerator = new Random();
+        int number = randomGenerator.Next(1, 101);
+        int guess = -1;
+
+        while (guess != number)
         {
             ///Prompt the user for a guess
             Console.Write("What is your guess? ");
@@ -26,7 +30,7 @@ class Program
             }
             else
             {
-            Console.WriteLine("You guessed it!");
+                Console.WriteLine("You guessed it!");
             }
         }
     }
