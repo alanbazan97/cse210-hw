@@ -18,7 +18,7 @@ class Program
             ///Prompt the user for a guess
             Console.Write("What is your guess? ");
             string guessNumber = Console.ReadLine();
-            int guess = int.Parse(guessNumber);
+            guess = int.Parse(guessNumber);
             ///Determining if the user needs to guess higher or lower next time, or telling them if they guessed
             if ( guess > number)
             {
