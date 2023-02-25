@@ -20,7 +20,7 @@ class Program
             {
                 Console.WriteLine("Lower");
             }
-            else if (guess < number)70
+            else if (guess < number)
             {
                 Console.WriteLine("Higher");
             }
