@@ -7,7 +7,7 @@ class Program
         //For this assigment, I wanted to use my personal jobs informations
         Job job1 = new Job();
         job1._company = "Amazon";
-        job1-_jobTitle = "Warehouse Associate";
+        job1._jobTitle = "Warehouse Associate";
         job1._startYear = 2020;
         job1._endYear = 2021;
 
