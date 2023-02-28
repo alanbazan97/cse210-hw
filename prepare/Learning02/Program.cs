@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {
         //For this assigment, I wanted to use my personal jobs informations
-        Job job1 = new Job()
+        Job job1 = new Job();
         job1._company = "Amazon";
         job1-_jobTitle = "Warehouse Associate";
         job1._startYear = 2020;
@@ -16,9 +16,10 @@ class Program
         job2._jobTitle = "operations Supervisor";
         job2._startYear = 2021;
         job2._endYear = 2023;
-        //Displaying name and all the jobs
+        
+        //Displaying name and the two jobs
         Resume resume = new Resume();
-        resume._name = "Alan Ronaldo Bazan Monge";
+        resume._myname = "Alan Ronaldo Bazan Monge";
         resume._jobs.Add(job1);
         resume._jobs.Add(job2);
         resume.Display();
