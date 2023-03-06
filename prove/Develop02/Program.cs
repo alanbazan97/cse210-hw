@@ -46,7 +46,7 @@ class Program
                     Console.WriteLine("Thank you for using the Journal App!");
                     break;
                 default:
-                    Console.WriteLine($"I'm sorry, the option you entered is not valid.");
+                    Console.WriteLine("I'm sorry, the option you entered is not valid.");
                     break;
             }
         }
