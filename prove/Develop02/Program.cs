@@ -36,7 +36,7 @@ class Program
                 case 2:
                     journal.Display();
                     break;
-                case 3; 
+                case 3: 
                     journal.CreateJournalFile();
                     break; 
                 case 4:
