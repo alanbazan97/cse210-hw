@@ -51,7 +51,7 @@ class Program
             }
         }
     }
-    static int Choices()
+    static void Choices()
     {
         string choices = @"
 Please select one of the following choices:
