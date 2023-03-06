@@ -23,7 +23,7 @@ public class Fraction
         _bottom = bottom;
     }
     //Creat Getters and Setters Top
-    public string GetTop()
+    public int GetTop()
     {
         return _top;
     }
