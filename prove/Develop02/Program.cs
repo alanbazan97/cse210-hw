@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 
+
 class Program
 {
 
@@ -65,6 +66,7 @@ What would you like to do? ";
         Console.Write(choices);
         string userInput = Console.ReadLine();
         int action = int.Parse(userInput);
+        return action;
     }
 
     static string GetDateTime()
