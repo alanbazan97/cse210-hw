@@ -1,61 +1,57 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-// This class represents a scripture, including the reference (e.g. John 3:16) and the text of the scripture.
 public class Scripture
+{
+    // Declare private fields to hold the reference and words of the scripture
+    private Reference _reference;
+    private List<Word> _words;
+    // Define a constructor for the Scripture class that takes a reference and a string of text
+    public Scripture(Reference reference, string text)
     {
-        // Private fields for the reference and text of the scripture.
-        private string _reference;
-        private string _text;
-        private List<string> hiddenWords;
-
-        // Constructor that takes the reference and text of the scripture as parameters.
-        public Scripture(string reference, string text)
+        // Store the reference and create a list of Word objects from the text
+        _reference = reference;
+        _words = text.Split(' ').Select(word => new Word(word)).ToList();
+    }
+    // Define a method to hide the next word in the scripture
+    public void HideWords()
+    {
+        // Iterate through each word in the list of words
+        foreach (Word word in _words)
         {
-            // The constructor initializes the reference, text, and list of hidden words for a new scripture.
-            _reference = reference;
-            _text = text;
-            hiddenWords = new List<string>();
-        }
-        
-        // Getter for the reference field.
-        public string GetReference()
-        {
-            // The GetReference method returns the reference of the scripture.
-            return _reference;
-        }
-        
-        // Getter for the text field.
-        public string GetText()
-        {
-            // The GetText method returns the text of the scripture with hidden words.
-            string displayedText = _text;
-            foreach (string word in hiddenWords)
+            // If the word is not already hidden, hide it and break out of the loop
+            if (!word.IsHidden())
             {
-                displayedText = displayedText.Replace(word, new string('_', word.Length));
+                word.Hide();
+                break;
             }
-            return displayedText;
-        }
-
-        public bool IsComplete()
-        {
-            // The IsComplete method checks if all words in the scripture have been hidden.
-            return hiddenWords.Count == GetWords().Count;
-        }
-
-        // Method to hide a specified number of random words in the scripture.
-        public void HideRandomWord()
-        {
-            // The HideRandomWord method hides a random word in the scripture by adding it to the list of hidden words.
-            List<string> words = GetWords();
-            // Create a random number generator.
-            Random rand = new Random();
-            int index = rand.Next(words.Count);
-            hiddenWords.Add(words[index]);
-        }
-
-        private List<string> GetWords()
-        {
-            // The GetWords method returns a list of all words in the scripture.
-            return new List<string>(_text.Split(' '));
         }
     }
+    // Define a method to get the rendered text of the scripture
+    public string GetRenderedText()
+    {
+        // Create an empty string to hold the rendered text
+        string renderedText = "";
+        // Iterate through each word in the list of words
+        foreach (Word word in _words)
+        {
+            // Append the rendered text of the word and a space to the rendered text string
+            renderedText += word.GetRenderedText() + " ";
+        }
+        // Trim any trailing whitespace from the rendered text string and return it
+        return renderedText.Trim();
+    }
+    // Define a method to check if all words in the scripture are hidden
+    public bool IsCompletelyHidden()
+    {
+        // Return true if all words in the list of words are hidden, false otherwise
+        return _words.All(word => word.IsHidden());
+    }
+    // Define a method to get the string representation of the reference
+    public string GetReference()
+    {
+        // Call the ToString() method on the reference object and return the result
+        return _reference.ToString();
+    }
+}
