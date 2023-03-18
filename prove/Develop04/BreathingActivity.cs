@@ -1,55 +1,28 @@
 using System;
 using System.Threading;
 
-public class BreathingActivity
+public class BreathingActivity : Activity
 {
-    public static void Run()
+    public BreathingActivity(int duration) : base("Breathing Activity", duration) { }
+
+    public override void Start()
     {
-        Console.WriteLine("Welcome to the Breathing Activity");
-        int duration = PromptForDuration();
+        base.Start();
+        Console.WriteLine("This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
+        Thread.Sleep(2000);
 
-        Console.WriteLine("This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
-
-        // loop for the duration of the activity
-        for (int i = 0; i < duration; i++)
+        int secondsElapsed = 0;
+        while (secondsElapsed < Duration)
         {
-            // alternate between "Breathe in..." and "Breathe out..."
-            if (i % 2 == 0)
-            {
-                Console.WriteLine("Breathe in...");
-            }
-            else
-            {
-                Console.WriteLine("Breathe out...");
-            }
+            Console.WriteLine("Breathe in...");
+            Thread.Sleep(2000);
+            Console.WriteLine("Breathe out...");
+            Thread.Sleep(2000);
 
-            // pause for a few seconds and show a countdown
-            Countdown(3);
+            secondsElapsed += 4;
         }
 
-        Console.WriteLine("Great job! You have completed the Breathing Activity.");
-    }
-
-    private static int PromptForDuration()
-    {
-        Console.WriteLine("How many seconds would you like to do this activity for?");
-        string input = Console.ReadLine();
-        int duration;
-        while (!int.TryParse(input, out duration) || duration <= 0)
-        {
-            Console.WriteLine("Invalid input. Please enter a positive integer value.");
-            input = Console.ReadLine();
-        }
-        return duration;
-    }
-
-    private static void Countdown(int seconds)
-    {
-        for (int i = seconds; i >= 1; i--)
-        {
-            Console.Write($" {i} ");
-            Thread.Sleep(1000);
-        }
-        Console.WriteLine();
+        base.End();
     }
 }
+

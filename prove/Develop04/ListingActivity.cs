@@ -1,48 +1,38 @@
 using System;
+using System.Threading;
 
-public class ListingActivity
+public class ListingActivity : Activity
 {
-    public static void Run()
+    private string prompt;
+    private int duration;
+
+    public ListingActivity(string name, string prompt, int duration) : base(name)
     {
-        Console.WriteLine("Starting Listing Activity...");
+        this.prompt = prompt;
+        this.duration = duration;
+    }
 
-        // Prompt user for duration of activity
-        Console.Write("How many seconds would you like for this activity? ");
-        int duration = Convert.ToInt32(Console.ReadLine());
+    public override void Start()
+    {
+        base.Start();
+        Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+        Console.WriteLine($"Prompt: {prompt}");
+        Console.WriteLine($"Duration: {duration} seconds");
 
-        // Prompt user with a random prompt
-        string[] prompts = {
-            "Who are people that you appreciate?",
-            "What are personal strengths of yours?",
-            "Who are people that you have helped this week?",
-            "When have you felt the Holy Ghost this month?",
-            "Who are some of your personal heroes?"
-        };
-        Random rnd = new Random();
-        int promptIndex = rnd.Next(prompts.Length);
-        Console.WriteLine(prompts[promptIndex]);
-
-        // Start timer
+        int count = 0;
+        Console.WriteLine("Begin listing:");
         DateTime startTime = DateTime.Now;
 
-        // Countdown for user to start listing items
-        Console.WriteLine("Think about the prompt above for a few seconds, then press enter to start listing items.");
-        Console.ReadLine();
-
-        // Initialize item count
-        int itemCount = 0;
-
-        // Loop through and prompt user to list items until time is up
         while ((DateTime.Now - startTime).TotalSeconds < duration)
         {
-            Console.Write("Enter an item: ");
-            Console.ReadLine();
-            itemCount++;
+            Console.Write($"{count + 1}. ");
+            string item = Console.ReadLine();
+            count++;
         }
 
-        // Display number of items listed
-        Console.WriteLine($"You listed {itemCount} items.");
-
-        Console.WriteLine("Listing Activity complete.");
+        Console.WriteLine($"You listed {count} items.");
+        base.Finish();
     }
 }
+
+
