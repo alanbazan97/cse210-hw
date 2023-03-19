@@ -1,41 +1,26 @@
 using System;
-
-public class MainMenu : Activity
+public class MainMenuActivity : Activity
 {
+    public MainMenuActivity(int duration) : base(duration)
+    {
+    }
+
     public override void Start()
     {
-        Console.WriteLine("Welcome to the relaxation app!");
-        Console.WriteLine("Please choose an activity:");
-        Console.WriteLine("1. Breathing Exercise");
-        Console.WriteLine("2. Reflection Exercise");
-        Console.WriteLine("3. Listing Exercise");
-
-        string input = Console.ReadLine();
-        switch (input)
-        {
-            case "1":
-                BreathingActivity breathingActivity = new BreathingActivity();
-                breathingActivity.Start();
-                break;
-            case "2":
-                ReflectionActivity reflectionActivity = new ReflectionActivity();
-                reflectionActivity.Start();
-                break;
-            case "3":
-                ListingActivity listingActivity = new ListingActivity();
-                listingActivity.Start();
-                break;
-            default:
-                Console.WriteLine("Invalid input, please try again.");
-                Start();
-                break;
-        }
+        Console.WriteLine("Welcome to the main menu!");
+        Console.WriteLine("Please select an activity to begin:");
+        Console.WriteLine("1. Breathing");
+        Console.WriteLine("2. Reflection");
+        Console.WriteLine("3. Listing");
+        Console.WriteLine("Enter the number of the activity you want to do:");
+        // Additional implementation for starting the activity goes here...
+        base.Start(); // Call the base implementation of the Start method
     }
 
-    public override void End()
+    public override void End(string activityName, int duration)
     {
-        Console.WriteLine("Thank you for using the relaxation app!");
+        // Additional implementation for ending the activity goes here...
+        base.End(activityName, duration); // Call the base implementation of the End method
     }
 }
-
 

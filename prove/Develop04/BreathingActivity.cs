@@ -1,27 +1,33 @@
 using System;
+using System.Threading;
 
 public class BreathingActivity : Activity
 {
-    public BreathingActivity(int duration) : base("Breathing Activity", duration) { }
+    public BreathingActivity(int duration) : base(duration) {}
 
     public override void Start()
     {
-        base.Start();
-        Console.WriteLine("This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
-        Thread.Sleep(2000);
+        Console.WriteLine("Starting breathing activity...");
+        Console.WriteLine("Duration: " + duration + " seconds");
+        Thread.Sleep(2000); // pause for 2 seconds
+        Console.WriteLine("Take a deep breath in...");
+        Thread.Sleep(2000); // pause for 2 seconds
+        Console.WriteLine("Hold your breath...");
+        Thread.Sleep(2000); // pause for 2 seconds
+        Console.WriteLine("Exhale slowly...");
+        Thread.Sleep(2000); // pause for 2 seconds
+        Console.WriteLine("Repeat until the end of the activity.");
+        Thread.Sleep(2000); // pause for 2 seconds
+    }
 
-        int secondsElapsed = 0;
-        while (secondsElapsed < Duration)
-        {
-            Console.WriteLine("Breathe in...");
-            Thread.Sleep(2000);
-            Console.WriteLine("Breathe out...");
-            Thread.Sleep(2000);
-
-            secondsElapsed += 4;
-        }
-
-        base.End();
+    public override void End(string activityName, int duration)
+    {
+        base.End(activityName, duration);
+        Console.WriteLine("Remember to take deep breaths throughout your day!");
+        Thread.Sleep(2000); // pause for 2 seconds
     }
 }
+
+
+
 

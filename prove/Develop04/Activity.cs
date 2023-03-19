@@ -2,51 +2,31 @@ using System;
 using System.Threading;
 
 // Base class for all activities
-public abstract class Activity
+public class Activity
 {
-    // Private member variables to store the name and duration of the activity
-    private string _name;
-    private int _duration;
+    protected int duration;
 
-    // Constructor to set the name and duration of the activity
-    public Activity(string name, int duration)
+    public Activity(int duration)
     {
-        _name = name;
-        _duration = duration;
+        this.duration = duration;
     }
 
-    // Method to start the activity
-    public void Start()
+    public virtual void Start()
     {
-        // Display the starting message for the activity
-        Console.WriteLine($"Starting {_name} for {_duration} seconds...");
-        Console.WriteLine(StartingMessage());
-
-        // Pause for a few seconds to allow the user to prepare
-        Pause(3);
-
-        // Start the activity loop
-        ActivityLoop();
-
-        // Display the ending message for the activity
-        Console.WriteLine(EndingMessage());
-        Console.WriteLine($"You completed {_name} for {_duration} seconds.");
+        Console.WriteLine("Starting activity...");
+        Console.WriteLine("Duration: " + duration + " seconds");
+        Thread.Sleep(2000); // pause for 2 seconds
+        Console.WriteLine("Get ready to begin...");
+        Thread.Sleep(2000); // pause for 2 seconds
     }
 
-    // Abstract methods to be implemented by each activity class
-    protected abstract string StartingMessage();
-    protected abstract string EndingMessage();
-    protected abstract void ActivityLoop();
-
-    // Method to pause the program for a specified number of seconds
-    protected void Pause(int seconds)
+    public virtual void End(string activityName, int duration)
     {
-        for (int i = seconds; i > 0; i--)
-        {
-            Console.Write(".");
-            Thread.Sleep(1000);
-        }
-        Console.WriteLine();
+        Console.WriteLine("Congratulations! You've completed the " + activityName + " activity.");
+        Console.WriteLine("Total duration: " + duration + " seconds");
+        Thread.Sleep(2000); // pause for 2 seconds
     }
 }
+
+
 
