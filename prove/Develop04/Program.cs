@@ -23,4 +23,3 @@ public class MainMenuActivity : Activity
         base.End(activityName, duration); // Call the base implementation of the End method
     }
 }
-
