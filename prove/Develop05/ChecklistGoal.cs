@@ -1,31 +1,56 @@
 using System;
 public class ChecklistGoal : Goal
 {
-    public int Progress { get; set; }
-    public int Target { get; set; }
-    public int BonusPoints { get; set; }
+    // Private member variables
+    private int _numTimes;
+    private int _numCompleted;
+    
+    // Public properties
+    public int NumTimes { get { return _numTimes; } }
+    public int NumCompleted { get { return _numCompleted; } }
 
-    public ChecklistGoal(string title, int pointValue, int target, int bonusPoints) : base(title, pointValue)
+    // Constructor
+    public ChecklistGoal(string name, int pointValue, int numTimes)
+        : base(name, pointValue)
     {
-        Progress = 0;
-        Target = target;
-        BonusPoints = bonusPoints;
+        _numTimes = numTimes;
+        _numCompleted = 0;
     }
 
-    public override void MarkComplete()
+    // Method to display the goal
+    public override string DisplayGoal()
     {
-        Progress++;
-        if (Progress == Target)
+        return $"{base.DisplayGoal()} [{_numCompleted}/{_numTimes}]";
+    }
+
+    // Method to calculate points earned
+    public override int CalculatePoints()
+    {
+        if (_numCompleted >= _numTimes)
         {
-            IsComplete = true;
-            PointValue += BonusPoints;
+            // Bonus points for finishing the goal
+            return base.CalculatePoints() * 2;
+        }
+        else
+        {
+            // Regular points for partial progress
+            return base.CalculatePoints();
         }
     }
 
-    public override string ToString()
+    // Method to record progress
+    public void RecordProgress()
     {
-        string completionStatus = IsComplete ? "Completed" : "Incomplete";
-        return $"{Title} ({PointValue} points) - {completionStatus} ({Progress}/{Target})";
+        if (_numCompleted < _numTimes)
+        {
+            _numCompleted++;
+        }
+    }
+
+    // Method to check if goal is completed
+    public bool IsCompleted()
+    {
+        return _numCompleted >= _numTimes;
     }
 }
 

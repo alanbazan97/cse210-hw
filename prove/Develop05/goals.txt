@@ -1,0 +1,3 @@
+simple,GYM,50,True
+eternal,Diario,100
+checklist,Puiie,40,7,7

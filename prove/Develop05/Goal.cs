@@ -1,25 +1,31 @@
 using System;
 public class Goal
 {
-    public string Title { get; set; }
-    public int PointValue { get; set; }
-    public bool IsComplete { get; set; }
+    // Private member variables
+    private string _name;
+    private int _pointValue;
 
-    public Goal(string title, int pointValue)
+    // Public properties
+    public string Name { get { return _name; } }
+    public int PointValue { get { return _pointValue; } }
+
+    // Constructor
+    public Goal(string name, int pointValue)
     {
-        Title = title;
-        PointValue = pointValue;
-        IsComplete = false;
+        _name = name;
+        _pointValue = pointValue;
     }
 
-    public virtual void MarkComplete()
+    // Method to display the goal
+    public virtual string DisplayGoal()
     {
-        IsComplete = true;
+        return $"{_name} ({_pointValue} points)";
     }
 
-    public override string ToString()
+    // Method to calculate points earned
+    public virtual int CalculatePoints()
     {
-        return $"{Title} ({PointValue} points)";
+        return _pointValue;
     }
 }
 

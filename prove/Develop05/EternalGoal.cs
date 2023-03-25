@@ -1,22 +1,20 @@
 using System;
 public class EternalGoal : Goal
 {
-    public int TotalPointsEarned { get; set; }
-
-    public EternalGoal(string title, int pointValue) : base(title, pointValue)
+    // Constructor
+    public EternalGoal(string name, int pointValue) : base(name, pointValue)
     {
-        TotalPointsEarned = 0;
     }
 
-    public override void MarkComplete()
+    // Override method to display the goal
+    public override string DisplayGoal()
     {
-        base.MarkComplete();
-        TotalPointsEarned += PointValue;
+        return base.DisplayGoal() + " (Eternal)";
     }
 
-    public override string ToString()
+    // Override method to calculate points earned
+    public override int CalculatePoints()
     {
-        return $"{Title} (total points earned: {TotalPointsEarned})";
+        return base.CalculatePoints();
     }
 }
-
